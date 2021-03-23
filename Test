@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Mar 23 11:12:44 2021
+
+@author: login
+"""
+
+rowsList=[]
+with open("hotels.csv", 'r') as hotels:
+    for rowList in hotels:
+        rowList = rowList.strip()
+        rowsList.append(rowList.split(','))
+
+def resultFilter(state, rowsList):
+    stateList = []
+    for row in range(1, len(rowsList)):
+        if rowsList[row][2] == state:
+            stateList.append(rowsList[row])
+        elif state=='India':
+            stateList.append(rowsList[row])
+        else:
+            return ("Incorrect Input.")
+    return stateList
+
+def operationCost(stateList):
+    dummy = []
+    for i in range(1, len(rowsList)):
+        if rowsList[i][2]==state:
+            dummy.append(rowsList[i][3])
+    return dummy
+
+def operationRating(stateList):
+    dummy = []
+    for i in range(1, len(rowsList)):
+        if rowsList[i][2]==state:
+            dummy.append(rowsList[i][4])
+    return dummy
+
+def highest(l):
+    max=0
+    for i in range(0,len(l)):
+        if l[i]>max:
+            max = l[i]
+    return max
+def cheapest(l):
+    min=0
+    for i in range(0,len(l)):
+        if min>l[i]:
+            min = l[i]
+    return min
+def average(l):
+    avg=0
+    num=0
+    for i in range(0,len(l)):
+        num+=l[i]
+    avg = round(num/len(l))
+    return avg
+
+
+def finalFun(state, col, op):
+    if col=='cost':
+        if state == 'Tamil':
+            if op=='highest':
+                highest(operationCost(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationCost(resultFilter(state), rowsList))
+            else:
+                cheapest(operationCost(resultFilter(state, rowsList)))
+        elif state == 'Maharashtra':
+            if op=='highest':
+                highest(operationCost(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationCost(resultFilter(state, rowsList)))
+            else:
+                cheapest(operationCost(resultFilter(state, rowsList)))
+        elif state == 'Karnataka':
+            if op=='highest':
+                highest(operationCost(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationCost(resultFilter(state, rowsList)))
+            else:
+                cheapest(operationCost(resultFilter(state, rowsList)))
+    elif col=='Ratings':
+        if state == 'Tamil':
+            if op=='highest':
+                highest(operationRating(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationRating(resultFilter(state, rowList)))
+            else:
+                cheapest(operationRating(resultFilter(state, rowsList)))
+        elif state == 'Maharashtra':
+            if op=='highest':
+                highest(operationRating(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationRating(resultFilter(state, rowsList)))
+            else:
+                cheapest(operationRating(resultFilter(state, rowsList)))
+        elif state == 'Karnataka':
+            if op=='highest':
+                highest(operationRating(resultFilter(state, rowsList)))
+            elif operation=='average':
+                average(operationRating(resultFilter(state, rowsList)))
+            else:
+                cheapest(operationRating(resultFilter(state, rowsList)))
+
+state = input("What is the state: ")
+col = input("Cost or Rating: ").lower()
+operation = input("Operation: ").lower()
+
+print("Hotel with highest price in Karnataka is:","abc"," with price: ",finalFun(state, col, operation))
